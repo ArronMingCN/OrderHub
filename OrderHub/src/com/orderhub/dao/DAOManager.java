@@ -13,9 +13,16 @@ public class DAOManager {
     @Autowired
     private OrderDAO orderDAO;
 
+    @Autowired
+    private OrderBookDAO orderBookDAO;
+
     public TestDAO getTestDAO(){return testDAO;}
 
     public OrderDAO getOrderDAO() {
         return orderDAO;
+    }
+
+    public OrderBookDAO getOrderBookDAO() {
+        return orderBookDAO;
     }
 }

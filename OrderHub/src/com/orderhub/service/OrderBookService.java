@@ -2,10 +2,17 @@ package com.orderhub.service;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 public class OrderBookService extends BaseServicce {
 
-    public void getOrderBookView(){
+    public Map<Integer, Map<String,Object>> getOrderBookBidView(String symbol){
+        return this.getDaoManager().getOrderBookDAO().getOrderBookBidBySymbol(symbol);
+
+    }
+    public Map<Integer, Map<String,Object>> getOrderBookAskView(String symbol){
+        return this.getDaoManager().getOrderBookDAO().getOrderBookAskBySymbol(symbol);
 
     }
 }
