@@ -15,11 +15,17 @@ import java.util.Map;
 public class OrderBookController extends BaseController {
 
 
+    /**
+     * get level 1 data
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping("/get/all")
     public void getOrderBook(HttpServletRequest request, HttpServletResponse response) throws IOException{
 
-        Map<Integer, Map<String,Object>>  bidMap = this.getServiceManager().getOrderBookService().getOrderBookBidView("AAPL");
-        Map<Integer, Map<String,Object>>  askMap = this.getServiceManager().getOrderBookService().getOrderBookAskView("AAPL");
+        Map<Integer, Map<String,Object>>  bidMap = this.getServiceManager().getOrderBookService().getOrderBookBidView("IBM");
+        Map<Integer, Map<String,Object>>  askMap = this.getServiceManager().getOrderBookService().getOrderBookAskView("IBM");
         JSONObject jsonObject = new JSONObject();
         JSONArray bid = new JSONArray();
         for(Map<String,Object> record: bidMap.values()){
@@ -43,6 +49,34 @@ public class OrderBookController extends BaseController {
         PrintWriter out =response.getWriter();
         out.print(jsonObject.toString());
     }
+
+
+    @RequestMapping("/getLevel2")
+    public void getLevel2(HttpServletRequest request, HttpServletResponse response){
+        Object[] oask=this.getServiceManager().getOrderBookService().getBestAskBySymbol("AAPL");
+        Object[] obid=this.getServiceManager().getOrderBookService().getBestBidBySymbol("AAPL");
+        JSONObject ask =new JSONObject();
+        ask.put("key",oask[0]);
+        ask.put("price",oask[4]);
+        ask.put("size",oask[3]);
+        JSONObject bid =new JSONObject();
+        bid.put("key",obid[0]);
+        bid.put("price",obid[4]);
+        bid.put("size",obid[3]);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("bid",bid);
+        jsonObject.put("ask",ask);
+//        System.out.println("best ask:");
+//        for(Object o:oask){
+//            System.out.print(o.toString()+" ,");
+//        }
+//        System.out.println("best bid:");
+//        for(Object a:obid){
+//            System.out.print(a.toString()+" ,");
+//        }
+    }
+
+
 
     /**
      * It's the api for GUI data

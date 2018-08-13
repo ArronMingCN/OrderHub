@@ -17,8 +17,22 @@ public class OrderController extends BaseController {
 
     @RequestMapping("placeOrder")
     public void placeOrder(HttpServletRequest request, HttpServletResponse response){
-        Order ord = new Order(3,"MKT","APPL","BUY",100);
-        System.out.println("adding new Order result: "+this.getServiceManager().getOrderService().placeANewMKTOrder(ord));
+        Order ord = new Order(3,"MKT","TEST","SELL",30);
+        //place order
+        Integer orderid =this.getServiceManager().getOrderService().placeANewMKTOrder(ord);
+
+        //processing order
+        if(orderid != -1){
+            ord.setOrderID(orderid);
+            if(ord.getBoS()=="BUY"){
+                this.getServiceManager().getOrderService().processingBidMKT(ord);
+            }
+            else if(ord.getBoS()=="SELL"){
+                this.getServiceManager().getOrderService().processingAskMKT(ord);
+            }else {
+                System.out.println("it's not buy or sell");
+            }
+        }
     }
 
 

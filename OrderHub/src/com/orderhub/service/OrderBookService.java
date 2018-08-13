@@ -13,6 +13,12 @@ public class OrderBookService extends BaseServicce {
     }
     public Map<Integer, Map<String,Object>> getOrderBookAskView(String symbol){
         return this.getDaoManager().getOrderBookDAO().getOrderBookAskBySymbol(symbol);
+    }
 
+    public Object[] getBestAskBySymbol(String symbol){
+        return this.getDaoManager().getOrderBookDAO().getBestAskBySymbol(symbol);
+    }
+    public Object[] getBestBidBySymbol(String symbol){
+        return this.getDaoManager().getOrderBookDAO().getBestBidBySymbol(symbol);
     }
 }
