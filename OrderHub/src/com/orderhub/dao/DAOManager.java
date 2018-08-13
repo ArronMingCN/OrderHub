@@ -10,5 +10,12 @@ public class DAOManager {
     @Autowired
     private TestDAO testDAO;
 
+    @Autowired
+    private OrderDAO orderDAO;
+
     public TestDAO getTestDAO(){return testDAO;}
+
+    public OrderDAO getOrderDAO() {
+        return orderDAO;
+    }
 }

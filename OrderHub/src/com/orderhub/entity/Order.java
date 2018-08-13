@@ -1,13 +1,11 @@
 package com.orderhub.entity;
 
 public class Order {
-    enum OrderType
-    {
-        MKT,LMT,STP,STPL,STPLMT,MIT,LIT
-    }
-    private String UserID;
-    private String OrderID;
-    private OrderType orderType;
+
+    private int UserID;
+    private int OrderID;
+    private String orderType;
+    private String Symbol;
     private String BoS; //buy or sell
     private int Status; //1 for processing ; 2 for matched ;3 for canceled
     private int Qty;
@@ -17,10 +15,10 @@ public class Order {
 
     // Status are default 1 for processing
     //price,FOK are optional so we have 4 constructors
-    public Order(String userID, String orderID, OrderType orderType, String boS, int qty) {
+    public Order(int userID, String orderType,String symbol, String boS, int qty) {
         UserID = userID;
-        OrderID = orderID;
         this.orderType = orderType;
+        Symbol=symbol;
         BoS = boS;
         Qty = qty;
         Status=1;
@@ -28,10 +26,10 @@ public class Order {
         FOK=0;
     }
 
-    public Order(String userID, String orderID, OrderType orderType, String boS, int qty, Double price) {
+    public Order(int userID, String orderType,String symbol, String boS, int qty, Double price) {
         UserID = userID;
-        OrderID = orderID;
         this.orderType = orderType;
+        Symbol=symbol;
         BoS = boS;
         Qty = qty;
         Price = price;
@@ -39,10 +37,10 @@ public class Order {
         FOK = 0;
     }
 
-    public Order(String userID, String orderID, OrderType orderType, String boS, int qty, int FOK) {
+    public Order(int userID, String orderType,String symbol, String boS, int qty, int FOK) {
         UserID = userID;
-        OrderID = orderID;
         this.orderType = orderType;
+        Symbol=symbol;
         BoS = boS;
         Qty = qty;
         this.FOK = FOK;
@@ -50,10 +48,10 @@ public class Order {
         Price =null;
     }
 
-    public Order(String userID, String orderID, OrderType orderType, String boS, int qty, Double price, int FOK) {
+    public Order(int userID, String orderType,String symbol, String boS, int qty, Double price, int FOK) {
         UserID = userID;
-        OrderID = orderID;
         this.orderType = orderType;
+        Symbol=symbol;
         BoS = boS;
         Qty = qty;
         Price = price;
@@ -61,28 +59,36 @@ public class Order {
         Status=1;
     }
 
-    public String getUserID() {
+    public int getUserID() {
         return UserID;
     }
 
-    public void setUserID(String userID) {
+    public void setUserID(int userID) {
         UserID = userID;
     }
 
-    public String getOrderID() {
+    public int getOrderID() {
         return OrderID;
     }
 
-    public void setOrderID(String orderID) {
+    public void setOrderID(int orderID) {
         OrderID = orderID;
     }
 
-    public OrderType getOrderType() {
+    public String getOrderType() {
         return orderType;
     }
 
-    public void setOrderType(OrderType orderType) {
+    public void setOrderType(String orderType) {
         this.orderType = orderType;
+    }
+
+    public String getSymbol() {
+        return Symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        Symbol = symbol;
     }
 
     public String getBoS() {
