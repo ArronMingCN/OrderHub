@@ -1,0 +1,32 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/servlet-api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-context-support-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-aspects-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-instrument-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/freemarker.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-instrument-tomcat-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-orm-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-websocket-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-jdbc-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/aopalliance-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-test-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-context-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-oxm-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-webmvc-portlet-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-tx-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-aop-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-beans-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-expression-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-messaging-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-webmvc-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-core-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-jms-4.3.18.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OrderHub/lib/spring-web-4.3.18.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

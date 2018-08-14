@@ -16,6 +16,16 @@ public class OrderService extends BaseServicce {
         return getDaoManager().getOrderDAO().addNewMKTOrder(ord);
     }
 
+    public boolean placeNewLMTOrder(Order ord){
+        return getDaoManager().getOrderDAO().addNewLMTOrder(ord);
+    }
+
+    public int OrderProcessing(Order ord){
+        return getDaoManager().getOrderDAO().isOrderMatched(ord);
+    }
+
+
+
 
     /**
      * adding a new ask order

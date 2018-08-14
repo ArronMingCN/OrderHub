@@ -41,6 +41,9 @@ public class OrderBookController extends BaseController {
         jsonObject.put("ask",ask);
         response.setContentType("application/json");
         PrintWriter out =response.getWriter();
+
+        //this.getServiceManager().getLoginService().getUserLoginResult("bryan","123456");
+
         out.print(jsonObject.toString());
     }
 
@@ -58,4 +61,5 @@ public class OrderBookController extends BaseController {
         String data = "{\"bid\":[{\"key\":\"1\",\"price\":\"201.42\",\"size\":\"40\"}],\"ask\":[{\"key\":\"1\",\"price\":\"202.32\",\"size\":\"23\"}]}";
         out.print(data);
     }
+
 }

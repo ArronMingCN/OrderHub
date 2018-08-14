@@ -130,4 +130,11 @@ public class Order {
     public void setFOK(int FOK) {
         this.FOK = FOK;
     }
+
+    public String getOrderTableName(){
+        if(this.getBoS()=="buy")
+            return "bidorders";
+        else
+            return "aksorders";
+    }
 }

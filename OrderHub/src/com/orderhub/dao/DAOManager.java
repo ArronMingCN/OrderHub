@@ -16,6 +16,8 @@ public class DAOManager {
     @Autowired
     private OrderBookDAO orderBookDAO;
 
+    @Autowired
+    private UserDao userDao;
     public TestDAO getTestDAO(){return testDAO;}
 
     public OrderDAO getOrderDAO() {
@@ -25,4 +27,5 @@ public class DAOManager {
     public OrderBookDAO getOrderBookDAO() {
         return orderBookDAO;
     }
+    public UserDao getUserDao(){ return userDao;}
 }

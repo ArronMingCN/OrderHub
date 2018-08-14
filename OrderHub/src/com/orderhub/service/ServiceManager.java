@@ -12,6 +12,12 @@ public class ServiceManager {
     @Autowired
     private OrderBookService orderBookService;
 
+    @Autowired
+    private LoginService loginService;
+
+    @Autowired
+    private MatchUtil matchUtil;
+
     public OrderService getOrderService() {
         return orderService;
     }
@@ -19,4 +25,10 @@ public class ServiceManager {
     public OrderBookService getOrderBookService() {
         return orderBookService;
     }
+
+    public LoginService getLoginService(){return loginService;}
+
+    public MatchUtil getMyUtil(){return matchUtil;}
+
+
 }
