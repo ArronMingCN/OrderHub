@@ -30,7 +30,7 @@ public class OrderDAO extends BaseDAO{
     }
 
 
-    public boolean wa6ddNewLMTOrder(Order ord){
+    public boolean addNewLMTOrder(Order ord){
         String orderName = ord.getOrderTableName();
         String sql = "insert into " +orderName+
                 "(UserID,Symbol,OrderType,Status,Qty,Remainder,price,FOK) " +
