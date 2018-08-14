@@ -3,14 +3,14 @@ package com.orderhub.dao;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.dbutils.handlers.ArrayHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ColumnListHandler;
 import org.apache.commons.dbutils.handlers.KeyedHandler;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 @Service
 public class OrderBookDAO extends BaseDAO {
@@ -41,7 +41,7 @@ public class OrderBookDAO extends BaseDAO {
     }
 
     public Object[] getBestAskBySymbol(String symbol){
-        String sql = "select * from askorderbook where symbol=? order by price asc";
+        String sql = "select * from askorderbook where symbol=? order by price asc LIMIT 1";
         try {
             Object[] rs = getQueryRunner().query(sql,symbol,new ArrayHandler());
             return rs;
@@ -51,7 +51,7 @@ public class OrderBookDAO extends BaseDAO {
         return null;
     }
     public Object[] getBestBidBySymbol(String symbol){
-        String sql = "select * from BidOrderBook  where symbol=? order by price desc";
+        String sql = "select * from BidOrderBook  where symbol=? order by price desc LIMIT 1";
         try {
             Object[] rs = getQueryRunner().query(sql,symbol,new ArrayHandler());
             return rs;
@@ -64,35 +64,38 @@ public class OrderBookDAO extends BaseDAO {
     /**
      * working...
      */
-    public void getAllLevel2(){
+    public JSONObject getAllLevel1(){
         String bidSql = "select DISTINCT(Symbol) from bidorderbook";
-        String askSql = "select DISTINCT(Symbol) from bidorderbook";
+        String askSql = "select DISTINCT(Symbol) from askorderbook";
         try{
-            Object[] bidRS = getQueryRunner().query(bidSql,new ArrayHandler());
-            Object[] askRS = getQueryRunner().query(askSql,new ArrayHandler());
-            JSONArray jsonArrayBid = new JSONArray();
-            JSONArray jsonArrayAsk =new JSONArray();
-
-            for(Object b:bidRS){
-                JSONObject jsonObjectBid=new JSONObject();
-                Object[] temp =getBestBidBySymbol(b.toString());
-                jsonObjectBid.put("key",temp[0]);
-                jsonObjectBid.put("price",temp[4]);
-                jsonObjectBid.put("size",temp[3]);
-                jsonArrayBid.add(jsonArrayBid);
+            List<String> bidRS = getQueryRunner().query(bidSql,new ColumnListHandler<String>());
+            List<String> askRS = getQueryRunner().query(askSql,new ColumnListHandler<String>());
+            HashSet<String> rs= new HashSet<String>();
+            for(String r:bidRS){
+                rs.add(r);
+            }
+            for(String r:askRS){
+                rs.add(r);
+            }
+            JSONArray jsonArray = new JSONArray();
+            for(String symbol:rs){
+                JSONObject jsonObject=new JSONObject();
+                Object[] bid =getBestBidBySymbol(symbol);
+                Object[] ask =getBestAskBySymbol(symbol);
+                jsonObject.put("symbol",symbol);
+                jsonObject.put("bidQty",bid[3]);
+                jsonObject.put("bidPrice",ask[4]);
+                jsonObject.put("askPrice",ask[4]);
+                jsonObject.put("askQty",ask[3]);
+                jsonArray.add(jsonObject);
              }
-            for(Object a:askRS){
-                JSONObject jsonObjectAsk=new JSONObject();
-                Object[] temp =getBestAskBySymbol(a.toString());
-                jsonObjectAsk.put("key",temp[0]);
-                jsonObjectAsk.put("price",temp[4]);
-                jsonObjectAsk.put("size",temp[3]);
-                jsonArrayAsk.add(jsonObjectAsk);
-               }
+             JSONObject obj = new JSONObject();
+            obj.put("market",jsonArray);
+            return obj;
         }catch (SQLException e){
             e.printStackTrace();
         }
-
+        return null;
     }
 
 }

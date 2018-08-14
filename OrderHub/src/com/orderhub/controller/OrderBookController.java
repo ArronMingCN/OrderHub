@@ -21,7 +21,7 @@ public class OrderBookController extends BaseController {
      * @param response
      * @throws IOException
      */
-    @RequestMapping("/get/all")
+    @RequestMapping("/get/leveltwo")
     public void getOrderBook(HttpServletRequest request, HttpServletResponse response) throws IOException{
 
         Map<Integer, Map<String,Object>>  bidMap = this.getServiceManager().getOrderBookService().getOrderBookBidView("IBM");
@@ -51,31 +51,13 @@ public class OrderBookController extends BaseController {
     }
 
 
-    @RequestMapping("/getLevel2")
-    public void getLevel2(HttpServletRequest request, HttpServletResponse response){
-        Object[] oask=this.getServiceManager().getOrderBookService().getBestAskBySymbol("AAPL");
-        Object[] obid=this.getServiceManager().getOrderBookService().getBestBidBySymbol("AAPL");
-        JSONObject ask =new JSONObject();
-        ask.put("key",oask[0]);
-        ask.put("price",oask[4]);
-        ask.put("size",oask[3]);
-        JSONObject bid =new JSONObject();
-        bid.put("key",obid[0]);
-        bid.put("price",obid[4]);
-        bid.put("size",obid[3]);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("bid",bid);
-        jsonObject.put("ask",ask);
-//        System.out.println("best ask:");
-//        for(Object o:oask){
-//            System.out.print(o.toString()+" ,");
-//        }
-//        System.out.println("best bid:");
-//        for(Object a:obid){
-//            System.out.print(a.toString()+" ,");
-//        }
+    @RequestMapping("/get/levelone")
+    public void getLevel1(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        JSONObject jsonObject = this.getServiceManager().getOrderBookService().test();
+        response.setContentType("application/json");
+        PrintWriter out =response.getWriter();
+        out.print(jsonObject.toString());
     }
-
 
 
     /**

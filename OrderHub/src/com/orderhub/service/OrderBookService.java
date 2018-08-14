@@ -1,5 +1,6 @@
 package com.orderhub.service;
 
+import net.sf.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -21,4 +22,9 @@ public class OrderBookService extends BaseServicce {
     public Object[] getBestBidBySymbol(String symbol){
         return this.getDaoManager().getOrderBookDAO().getBestBidBySymbol(symbol);
     }
+
+    public JSONObject test(){
+        return this.getDaoManager().getOrderBookDAO().getAllLevel1();
+    }
+
 }
