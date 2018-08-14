@@ -15,11 +15,17 @@ import java.util.Map;
 public class OrderBookController extends BaseController {
 
 
-    @RequestMapping("/get/all")
+    /**
+     * get level 1 data
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping("/get/leveltwo")
     public void getOrderBook(HttpServletRequest request, HttpServletResponse response) throws IOException{
 
-        Map<Integer, Map<String,Object>>  bidMap = this.getServiceManager().getOrderBookService().getOrderBookBidView("AAPL");
-        Map<Integer, Map<String,Object>>  askMap = this.getServiceManager().getOrderBookService().getOrderBookAskView("AAPL");
+        Map<Integer, Map<String,Object>>  bidMap = this.getServiceManager().getOrderBookService().getOrderBookBidView("IBM");
+        Map<Integer, Map<String,Object>>  askMap = this.getServiceManager().getOrderBookService().getOrderBookAskView("IBM");
         JSONObject jsonObject = new JSONObject();
         JSONArray bid = new JSONArray();
         for(Map<String,Object> record: bidMap.values()){
@@ -46,6 +52,16 @@ public class OrderBookController extends BaseController {
 
         out.print(jsonObject.toString());
     }
+
+
+    @RequestMapping("/get/levelone")
+    public void getLevel1(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        JSONObject jsonObject = this.getServiceManager().getOrderBookService().test();
+        response.setContentType("application/json");
+        PrintWriter out =response.getWriter();
+        out.print(jsonObject.toString());
+    }
+
 
     /**
      * It's the api for GUI data

@@ -26,7 +26,6 @@ public class LoginController extends BaseController {
         }
         else{
             out.print("-1");
-
         }
 
     }

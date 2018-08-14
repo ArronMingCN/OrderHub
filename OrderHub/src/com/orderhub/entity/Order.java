@@ -132,7 +132,7 @@ public class Order {
     }
 
     public String getOrderTableName(){
-        if(this.getBoS()=="buy")
+        if(this.getBoS()=="BUY")
             return "bidorders";
         else
             return "aksorders";
